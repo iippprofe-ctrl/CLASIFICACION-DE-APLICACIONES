@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Login from './pages/Login';
 import UserForm from './pages/UserForm';
@@ -15,7 +15,7 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter basename="/CLASIFICACION-DE-APLICACIONES">
+      <HashRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
           
@@ -39,7 +39,7 @@ function App() {
 
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </AuthProvider>
   );
 }
