@@ -158,7 +158,15 @@ const UserForm = () => {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '2.5rem' }}>
               <div className="form-group">
                 <label style={{ fontWeight: '700', fontSize: '0.85rem', textTransform: 'uppercase', color: '#64748b', marginBottom: '0.5rem', display: 'block' }}>Área</label>
-                <input type="text" className="input-field" onChange={(e) => handleChange('area', e.target.value)} required placeholder="Ej. Matemáticas" />
+                <select className="input-field" value={formData.area} onChange={(e) => handleChange('area', e.target.value)} required>
+                  <option value="">Seleccione Área...</option>
+                  <option value="Lenguaje">Lenguaje</option>
+                  <option value="Matemática">Matemática</option>
+                  <option value="Ciencias Naturales">Ciencias Naturales</option>
+                  <option value="Ciencias Sociales">Ciencias Sociales</option>
+                  <option value="Recurso Multimedia">Recurso Multimedia</option>
+                  <option value="Otros">Otros</option>
+                </select>
               </div>
               <div className="form-group">
                 <label style={{ fontWeight: '700', fontSize: '0.85rem', textTransform: 'uppercase', color: '#64748b', marginBottom: '0.5rem', display: 'block' }}>Aplicación</label>
@@ -214,7 +222,7 @@ const UserForm = () => {
                       <label style={{ fontSize: '0.85rem' }}>Idioma:</label>
                       <select className="input-field" value={formData.idioma} onChange={(e) => handleChange('idioma', e.target.value)} required>
                         <option value="">Seleccione...</option>
-                        <option value="Castellano">Castellano</option>
+                        <option value="Español">Español</option>
                         <option value="Inglés">Inglés</option>
                         <option value="Originario">Originario</option>
                         <option value="Bilingüe">Bilingüe</option>
