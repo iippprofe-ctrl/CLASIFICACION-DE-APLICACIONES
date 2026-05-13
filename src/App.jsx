@@ -15,7 +15,7 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/CLASIFICACION-DE-APLICACIONES">
         <Routes>
           <Route path="/login" element={<Login />} />
           
