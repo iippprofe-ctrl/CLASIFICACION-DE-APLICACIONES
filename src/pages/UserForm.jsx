@@ -170,7 +170,7 @@ const UserForm = () => {
               </div>
               <div className="form-group">
                 <label style={{ fontWeight: '700', fontSize: '0.85rem', textTransform: 'uppercase', color: '#64748b', marginBottom: '0.5rem', display: 'block' }}>Aplicación</label>
-                <input type="text" className="input-field" onChange={(e) => handleChange('aplicacion', e.target.value)} required placeholder="Nombre del software" />
+                <input type="text" className="input-field" value={formData.aplicacion} onChange={(e) => handleChange('aplicacion', e.target.value)} required placeholder="Nombre del software" />
               </div>
             </div>
 
@@ -185,7 +185,7 @@ const UserForm = () => {
                   <h3 style={{ fontSize: '0.9rem', fontWeight: '700', marginBottom: '1rem' }}>Conectividad</h3>
                   {['Online', 'Offline', 'Mixto'].map(opt => (
                     <label key={opt} style={{ display: 'block', marginBottom: '0.6rem', cursor: 'pointer' }}>
-                      <input type="radio" name="conectividad" onChange={() => handleChange('conectividad', opt)} required /> {opt}
+                      <input type="radio" name="conectividad" checked={formData.conectividad === opt} onChange={() => handleChange('conectividad', opt)} required /> {opt}
                     </label>
                   ))}
                 </div>
@@ -194,13 +194,13 @@ const UserForm = () => {
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
                     {['Windows', 'Linux', 'Web'].map(opt => (
                       <label key={opt} style={{ cursor: 'pointer' }}>
-                        <input type="checkbox" onChange={(e) => handleCheckbox('compatibilidad', opt, e.target.checked)} /> {opt}
+                        <input type="checkbox" checked={formData.compatibilidad.includes(opt)} onChange={(e) => handleCheckbox('compatibilidad', opt, e.target.checked)} /> {opt}
                       </label>
                     ))}
                   </div>
                   <div style={{ marginTop: '0.5rem' }}>
                     <label style={{ fontSize: '0.85rem' }}>Otro:</label>
-                    <input type="text" className="input-field" style={{ padding: '0.4rem', marginTop: '0.2rem' }} onChange={(e) => handleChange('compatibilidadOtro', e.target.value)} />
+                    <input type="text" className="input-field" value={formData.compatibilidadOtro} style={{ padding: '0.4rem', marginTop: '0.2rem' }} onChange={(e) => handleChange('compatibilidadOtro', e.target.value)} />
                   </div>
                 </div>
               </div>
@@ -233,7 +233,7 @@ const UserForm = () => {
                 </div>
                 <div>
                   <h3 style={{ fontSize: '0.9rem', fontWeight: '700', marginBottom: '1rem' }}>Usabilidad</h3>
-                  <select className="input-field" onChange={(e) => handleChange('usabilidad', e.target.value)} required>
+                  <select className="input-field" value={formData.usabilidad} onChange={(e) => handleChange('usabilidad', e.target.value)} required>
                     <option value="">Seleccione Nivel...</option>
                     <option value="Alta">Alta</option>
                     <option value="Media">Media</option>
@@ -254,7 +254,7 @@ const UserForm = () => {
                   <h3 style={{ fontSize: '0.9rem', fontWeight: '700', marginBottom: '1rem' }}>Calidad Curricular</h3>
                   <div style={{ marginBottom: '1rem' }}>
                     <label style={{ fontSize: '0.85rem' }}>Pertinencia Curricular:</label>
-                    <select className="input-field" onChange={(e) => handleChange('pertinencia', e.target.value)} required>
+                    <select className="input-field" value={formData.pertinencia} onChange={(e) => handleChange('pertinencia', e.target.value)} required>
                       <option value="">Seleccione...</option>
                       <option value="Alta">Alta</option>
                       <option value="Media">Media</option>
@@ -266,7 +266,7 @@ const UserForm = () => {
                     <div style={{ display: 'flex', gap: '0.8rem', marginTop: '0.4rem' }}>
                       {['Activo', 'Pasivo', 'Colaborativo'].map(opt => (
                         <label key={opt} style={{ fontSize: '0.9rem' }}>
-                          <input type="radio" name="rol" onChange={() => handleChange('rol', opt)} /> {opt}
+                          <input type="radio" name="rol" checked={formData.rol === opt} onChange={() => handleChange('rol', opt)} /> {opt}
                         </label>
                       ))}
                     </div>
@@ -278,15 +278,15 @@ const UserForm = () => {
                   <div style={{ marginBottom: '1rem' }}>
                     <label style={{ fontSize: '0.85rem' }}>Contextualización (¿Es adaptable?):</label>
                     <div style={{ display: 'flex', gap: '1.5rem', marginTop: '0.4rem' }}>
-                      <label><input type="radio" name="context" onChange={() => handleChange('contextualizacion', 'Sí')} /> Sí</label>
-                      <label><input type="radio" name="context" onChange={() => handleChange('contextualizacion', 'No')} /> No</label>
+                      <label><input type="radio" name="context" checked={formData.contextualizacion === 'Sí'} onChange={() => handleChange('contextualizacion', 'Sí')} /> Sí</label>
+                      <label><input type="radio" name="context" checked={formData.contextualizacion === 'No'} onChange={() => handleChange('contextualizacion', 'No')} /> No</label>
                     </div>
                   </div>
                   <div>
                     <label style={{ fontSize: '0.85rem' }}>Nivel Educativo Sugerido:</label>
                     <div style={{ display: 'flex', gap: '1rem', marginTop: '0.4rem' }}>
-                      <label><input type="checkbox" onChange={(e) => handleCheckbox('nivel', 'Primaria', e.target.checked)} /> Primaria</label>
-                      <label><input type="checkbox" onChange={(e) => handleCheckbox('nivel', 'Secundaria', e.target.checked)} /> Secundaria</label>
+                      <label><input type="checkbox" checked={formData.nivel.includes('Primaria')} onChange={(e) => handleCheckbox('nivel', 'Primaria', e.target.checked)} /> Primaria</label>
+                      <label><input type="checkbox" checked={formData.nivel.includes('Secundaria')} onChange={(e) => handleCheckbox('nivel', 'Secundaria', e.target.checked)} /> Secundaria</label>
                     </div>
                   </div>
                 </div>
@@ -297,7 +297,7 @@ const UserForm = () => {
                 <div style={{ display: 'flex', justifyContent: 'space-between', backgroundColor: '#f8fafc', padding: '1rem', borderRadius: '8px' }}>
                   {['1ro', '2do', '3ro', '4to', '5to', '6to'].map(opt => (
                     <label key={opt} style={{ cursor: 'pointer', fontWeight: '500' }}>
-                      <input type="checkbox" onChange={(e) => handleCheckbox('grados', opt, e.target.checked)} /> {opt}
+                      <input type="checkbox" checked={formData.grados.includes(opt)} onChange={(e) => handleCheckbox('grados', opt, e.target.checked)} /> {opt}
                     </label>
                   ))}
                 </div>
@@ -309,7 +309,7 @@ const UserForm = () => {
               <div style={{ display: 'flex', gap: '2rem' }}>
                 {['Recomendado', 'Recomendado con Reservas', 'No Recomendado'].map(opt => (
                   <label key={opt} style={{ padding: '0.8rem 1.2rem', border: '1px solid #e2e8f0', borderRadius: '8px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <input type="radio" name="recom" onChange={() => handleChange('recomendacion', opt)} /> {opt}
+                    <input type="radio" name="recom" checked={formData.recomendacion === opt} onChange={() => handleChange('recomendacion', opt)} /> {opt}
                   </label>
                 ))}
               </div>
